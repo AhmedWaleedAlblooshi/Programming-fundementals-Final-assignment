@@ -1,1 +1,67 @@
+for the diagram:
+
+class User:
+    """Class representing a system User"""
+    def __init__(self, name, email, phone_number, membership_status, booking_history):
+        self._uName = name
+        self._uEmail = email
+        self._uPhoneNumber = phone_number
+        self._uMembershipStatus = membership_status
+        self._uBookingHistory = booking_history
+
+    def set_name(self, name):
+        self._uName = name
+
+    def get_name(self):
+        return self._uName
+
+    def set_email(self, email):
+        self._uEmail = email
+
+    def get_email(self):
+        return self._uEmail
+
+    def set_phone_number(self, phone_number):
+        self._uPhoneNumber = phone_number
+
+    def get_phone_number(self):
+        return self._uPhoneNumber
+
+    def set_membership_status(self, status):
+        self._uMembershipStatus = status
+
+    def get_membership_status(self):
+        return self._uMembershipStatus
+
+    def set_booking_history(self, history):
+        self._uBookingHistory = history
+
+    def get_booking_history(self):
+        return self._uBookingHistory
+
+    def get_details(self):
+        return f"User: {self._uName}, Email: {self._uEmail}, Membership: {self._uMembershipStatus}"
+
+
+for the pickle:
+
+class User:
+    def __init__(self, uName, uEmail, uPhoneNumber):
+        self.uName = uName
+        self.uEmail = uEmail
+        self.uPhoneNumber = uPhoneNumber
+        self.uMembershipStatus = False
+        self.uBookingHistory = []
+
+    def register(self):
+        print(f"{self.uName} has been registered successfully.")
+        return self
+
+    def login(self, email):
+        if email == self.uEmail:
+            print(f"{self.uName} has logged in.")
+            return True
+
+        raise ValueError("Invalid email address provided!")
+
 
