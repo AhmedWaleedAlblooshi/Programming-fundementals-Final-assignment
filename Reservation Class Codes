@@ -1,1 +1,72 @@
+for the diagram:
+
+class Reservation:
+    """Class representing a Reservation"""
+    def __init__(self, reservation_id, user_id, ticket_id, date, status):
+        self._rId = reservation_id
+        self._rUserId = user_id
+        self._rTicketId = ticket_id
+        self._rDate = date
+        self._rStatus = status
+
+    def set_reservation_id(self, reservation_id):
+        self._rId = reservation_id
+
+    def get_reservation_id(self):
+        return self._rId
+
+    def set_user_id(self, user_id):
+        self._rUserId = user_id
+
+    def get_user_id(self):
+        return self._rUserId
+
+    def set_ticket_id(self, ticket_id):
+        self._rTicketId = ticket_id
+
+    def get_ticket_id(self):
+        return self._rTicketId
+
+    def set_date(self, date):
+        self._rDate = date
+
+    def get_date(self):
+        return self._rDate
+
+    def set_status(self, status):
+        self._rStatus = status
+
+    def get_status(self):
+        return self._rStatus
+
+    def get_details(self):
+        return f"Reservation {self._rId}, Status: {self._rStatus}, Date: {self._rDate}"
+
+
+for the pickle:
+
+class Reservation:
+    def __init__(self, rId, rUserId, rTicketId, rDate):
+        self.rId = rId
+        self.rUserId = rUserId
+        self.rTicketId = rTicketId
+        self.rDate = rDate
+        self.rStatus = "Pending"
+
+    def confirmReservation(self):
+        self.rStatus = "Confirmed"
+        print(f"Reservation #{self.rId} has been confirmed.")
+
+    def cancelReservation(self):
+        self.rStatus = "Cancelled"
+        print(f"Reservation #{self.rId} has been cancelled.")
+        return True
+
+    def updateReservation(self, new_date):
+        self.rDate = new_date
+        print(f"Reservation #{self.rId} date is now {self.rDate}.")
+
+    def isActive(self):
+        return self.rStatus == "Confirmed"
+
 
