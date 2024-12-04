@@ -1,1 +1,71 @@
+for the diagram:
+
+class Membership:
+    """Class representing a Membership"""
+    def __init__(self, membership_id, membership_type, discount_rate, validity_period, user_id):
+        self._mId = membership_id
+        self._mType = membership_type
+        self._mDiscountRate = discount_rate
+        self._mValidityPeriod = validity_period
+        self._mUserId = user_id
+
+    def set_membership_id(self, membership_id):
+        self._mId = membership_id
+
+    def get_membership_id(self):
+        return self._mId
+
+    def set_membership_type(self, membership_type):
+        self._mType = membership_type
+
+    def get_membership_type(self):
+        return self._mType
+
+    def set_discount_rate(self, discount_rate):
+        self._mDiscountRate = discount_rate
+
+    def get_discount_rate(self):
+        return self._mDiscountRate
+
+    def set_validity_period(self, validity_period):
+        self._mValidityPeriod = validity_period
+
+    def get_validity_period(self):
+        return self._mValidityPeriod
+
+    def set_user_id(self, user_id):
+        self._mUserId = user_id
+
+    def get_user_id(self):
+        return self._mUserId
+
+    def get_details(self):
+        return f"Membership {self._mId}, Type: {self._mType}, Discount: {self._mDiscountRate}%"
+
+
+for the pickle:
+
+class Membership:
+    def __init__(self, mId, mType, mDiscountRate, mValidityPeriod, mUserId):
+        self.mId = mId
+        self.mType = mType
+        self.mDiscountRate = mDiscountRate
+        self.mValidityPeriod = mValidityPeriod
+        self.mUserId = mUserId
+        self.mStatus = "Pending"
+
+    def activateMembership(self):
+        self.mStatus = "Active"
+        print(f"Membership #{self.mId} has been activated.")
+
+    def renewMembership(self):
+        print(f"Membership #{self.mId} has been renewed for {self.mValidityPeriod} days.")
+
+    def applyDiscount(self, ticket):
+        ticket.applyDiscount(self.mDiscountRate)
+
+    def cancelMembership(self):
+        self.mStatus = "Cancelled"
+        print(f"Membership #{self.mId} has been cancelled.")
+
 
