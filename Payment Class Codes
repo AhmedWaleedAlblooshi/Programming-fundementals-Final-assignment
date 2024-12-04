@@ -1,1 +1,73 @@
+for the diagram:
+
+class Payment:
+    """Class representing a Payment"""
+    def __init__(self, payment_id, amount, method, date, status):
+        self._pId = payment_id
+        self._pAmount = amount
+        self._pMethod = method
+        self._pDate = date
+        self._pStatus = status
+
+    def set_payment_id(self, payment_id):
+        self._pId = payment_id
+
+    def get_payment_id(self):
+        return self._pId
+
+    def set_amount(self, amount):
+        self._pAmount = amount
+
+    def get_amount(self):
+        return self._pAmount
+
+    def set_method(self, method):
+        self._pMethod = method
+
+    def get_method(self):
+        return self._pMethod
+
+    def set_date(self, date):
+        self._pDate = date
+
+    def get_date(self):
+        return self._pDate
+
+    def set_status(self, status):
+        self._pStatus = status
+
+    def get_status(self):
+        return self._pStatus
+
+    def get_details(self):
+        return f"Payment {self._pId}, Amount: {self._pAmount}, Status: {self._pStatus}"
+
+for the pickle:
+
+class Payment:
+    def __init__(self, pId, pAmount, pMethod):
+        self.pId = pId
+        self.pAmount = pAmount
+        self.pMethod = pMethod
+        self.pDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.pStatus = "Pending"
+
+    def processPayment(self):
+        self.pStatus = "Completed"
+        print(f"Payment #{self.pId} of amount {self.pAmount:.2f} has been processed.")
+        return True
+
+    def refundPayment(self):
+        self.pStatus = "Refunded"
+        print(f"Payment #{self.pId} of amount {self.pAmount:.2f} has been refunded.")
+        return True
+
+    def getPaymentDetails(self):
+        return {
+            "Payment ID": self.pId,
+            "Amount": self.pAmount,
+            "Method": self.pMethod,
+            "Date": self.pDate,
+            "Status": self.pStatus
+        }
 
