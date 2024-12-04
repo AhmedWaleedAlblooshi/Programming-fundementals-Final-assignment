@@ -1,3 +1,308 @@
+Defining the UML Class Diagram with codes:
+
+class User:
+    """Class representing a system User"""
+    def __init__(self, name, email, phone_number, membership_status, booking_history):
+        self._uName = name
+        self._uEmail = email
+        self._uPhoneNumber = phone_number
+        self._uMembershipStatus = membership_status
+        self._uBookingHistory = booking_history
+
+    def set_name(self, name):
+        self._uName = name
+
+    def get_name(self):
+        return self._uName
+
+    def set_email(self, email):
+        self._uEmail = email
+
+    def get_email(self):
+        return self._uEmail
+
+    def set_phone_number(self, phone_number):
+        self._uPhoneNumber = phone_number
+
+    def get_phone_number(self):
+        return self._uPhoneNumber
+
+    def set_membership_status(self, status):
+        self._uMembershipStatus = status
+
+    def get_membership_status(self):
+        return self._uMembershipStatus
+
+    def set_booking_history(self, history):
+        self._uBookingHistory = history
+
+    def get_booking_history(self):
+        return self._uBookingHistory
+
+    def get_details(self):
+        return f"User: {self._uName}, Email: {self._uEmail}, Membership: {self._uMembershipStatus}"
+
+
+class Account:
+    """Class representing a User Account"""
+    def __init__(self, account_id, username, password, balance, created_at):
+        self._aAccountId = account_id
+        self._aUsername = username
+        self._aPassword = password
+        self._aBalance = balance
+        self._aCreatedAt = created_at
+
+    def set_account_id(self, account_id):
+        self._aAccountId = account_id
+
+    def get_account_id(self):
+        return self._aAccountId
+
+    def set_username(self, username):
+        self._aUsername = username
+
+    def get_username(self):
+        return self._aUsername
+
+    def set_password(self, password):
+        self._aPassword = password
+
+    def get_password(self):
+        return self._aPassword
+
+    def set_balance(self, balance):
+        self._aBalance = balance
+
+    def get_balance(self):
+        return self._aBalance
+
+    def set_created_at(self, created_at):
+        self._aCreatedAt = created_at
+
+    def get_created_at(self):
+        return self._aCreatedAt
+
+    def get_details(self):
+        return f"Account {self._aAccountId}, Username: {self._aUsername}, Balance: {self._aBalance}"
+
+
+class BookingSystem:
+    """Class representing a Booking System"""
+    def __init__(self, system_id, available_tickets, reservations, capacity, status):
+        self._bSystemId = system_id
+        self._bAvailableTickets = available_tickets
+        self._bReservations = reservations
+        self._bCapacity = capacity
+        self._bSystemStatus = status
+
+    def set_system_id(self, system_id):
+        self._bSystemId = system_id
+
+    def get_system_id(self):
+        return self._bSystemId
+
+    def set_available_tickets(self, tickets):
+        self._bAvailableTickets = tickets
+
+    def get_available_tickets(self):
+        return self._bAvailableTickets
+
+    def set_reservations(self, reservations):
+        self._bReservations = reservations
+
+    def get_reservations(self):
+        return self._bReservations
+
+    def set_capacity(self, capacity):
+        self._bCapacity = capacity
+
+    def get_capacity(self):
+        return self._bCapacity
+
+    def set_system_status(self, status):
+        self._bSystemStatus = status
+
+    def get_system_status(self):
+        return self._bSystemStatus
+
+    def get_details(self):
+        return f"System ID: {self._bSystemId}, Status: {self._bSystemStatus}, Capacity: {self._bCapacity}"
+
+
+class Tickets:
+    """Class representing Tickets"""
+    def __init__(self, ticket_id, ticket_type, price, validity_date, event_name):
+        self._tId = ticket_id
+        self._tType = ticket_type
+        self._tPrice = price
+        self._tValidityDate = validity_date
+        self._tEventName = event_name
+
+    def set_ticket_id(self, ticket_id):
+        self._tId = ticket_id
+
+    def get_ticket_id(self):
+        return self._tId
+
+    def set_type(self, ticket_type):
+        self._tType = ticket_type
+
+    def get_type(self):
+        return self._tType
+
+    def set_price(self, price):
+        self._tPrice = price
+
+    def get_price(self):
+        return self._tPrice
+
+    def set_validity_date(self, validity_date):
+        self._tValidityDate = validity_date
+
+    def get_validity_date(self):
+        return self._tValidityDate
+
+    def set_event_name(self, event_name):
+        self._tEventName = event_name
+
+    def get_event_name(self):
+        return self._tEventName
+
+    def get_details(self):
+        return f"Ticket ID: {self._tId}, Event: {self._tEventName}, Price: {self._tPrice}"
+
+
+class Reservation:
+    """Class representing a Reservation"""
+    def __init__(self, reservation_id, user_id, ticket_id, date, status):
+        self._rId = reservation_id
+        self._rUserId = user_id
+        self._rTicketId = ticket_id
+        self._rDate = date
+        self._rStatus = status
+
+    def set_reservation_id(self, reservation_id):
+        self._rId = reservation_id
+
+    def get_reservation_id(self):
+        return self._rId
+
+    def set_user_id(self, user_id):
+        self._rUserId = user_id
+
+    def get_user_id(self):
+        return self._rUserId
+
+    def set_ticket_id(self, ticket_id):
+        self._rTicketId = ticket_id
+
+    def get_ticket_id(self):
+        return self._rTicketId
+
+    def set_date(self, date):
+        self._rDate = date
+
+    def get_date(self):
+        return self._rDate
+
+    def set_status(self, status):
+        self._rStatus = status
+
+    def get_status(self):
+        return self._rStatus
+
+    def get_details(self):
+        return f"Reservation {self._rId}, Status: {self._rStatus}, Date: {self._rDate}"
+
+class Membership:
+    """Class representing a Membership"""
+    def __init__(self, membership_id, membership_type, discount_rate, validity_period, user_id):
+        self._mId = membership_id
+        self._mType = membership_type
+        self._mDiscountRate = discount_rate
+        self._mValidityPeriod = validity_period
+        self._mUserId = user_id
+
+    def set_membership_id(self, membership_id):
+        self._mId = membership_id
+
+    def get_membership_id(self):
+        return self._mId
+
+    def set_membership_type(self, membership_type):
+        self._mType = membership_type
+
+    def get_membership_type(self):
+        return self._mType
+
+    def set_discount_rate(self, discount_rate):
+        self._mDiscountRate = discount_rate
+
+    def get_discount_rate(self):
+        return self._mDiscountRate
+
+    def set_validity_period(self, validity_period):
+        self._mValidityPeriod = validity_period
+
+    def get_validity_period(self):
+        return self._mValidityPeriod
+
+    def set_user_id(self, user_id):
+        self._mUserId = user_id
+
+    def get_user_id(self):
+        return self._mUserId
+
+    def get_details(self):
+        return f"Membership {self._mId}, Type: {self._mType}, Discount: {self._mDiscountRate}%"
+
+class Payment:
+    """Class representing a Payment"""
+    def __init__(self, payment_id, amount, method, date, status):
+        self._pId = payment_id
+        self._pAmount = amount
+        self._pMethod = method
+        self._pDate = date
+        self._pStatus = status
+
+    def set_payment_id(self, payment_id):
+        self._pId = payment_id
+
+    def get_payment_id(self):
+        return self._pId
+
+    def set_amount(self, amount):
+        self._pAmount = amount
+
+    def get_amount(self):
+        return self._pAmount
+
+    def set_method(self, method):
+        self._pMethod = method
+
+    def get_method(self):
+        return self._pMethod
+
+    def set_date(self, date):
+        self._pDate = date
+
+    def get_date(self):
+        return self._pDate
+
+    def set_status(self, status):
+        self._pStatus = status
+
+    def get_status(self):
+        return self._pStatus
+
+    def get_details(self):
+        return f"Payment {self._pId}, Amount: {self._pAmount}, Status: {self._pStatus}"
+
+
+
+
+Python code for pickle and multiple files:
+
 import pickle
 from datetime import datetime
 
@@ -232,3 +537,259 @@ def testCases():
 
 if __name__ == "__main__":
     testCases()
+
+GUI:
+import tkinter as tk
+from tkinter import messagebox, ttk
+
+class ThemeParkGUI:
+    def _init_(self, root):
+        self.root = root
+        self.root.title("Adventure Land Theme Park")
+        self.root.geometry("800x600")
+
+        # Mock database for accounts and purchase orders
+        self.accounts = {}
+        self.purchase_orders = {}
+
+        # Initialize frames
+        self.init_gui()
+
+    def init_gui(self):
+        # Tabs for different sections
+        tab_control = ttk.Notebook(self.root)
+
+        # Account Management Tab
+        self.account_frame = ttk.Frame(tab_control)
+        tab_control.add(self.account_frame, text="Account Management")
+        self.setup_account_management()
+
+        # Ticket Purchasing Tab
+        self.ticket_frame = ttk.Frame(tab_control)
+        tab_control.add(self.ticket_frame, text="Ticket Purchasing")
+        self.setup_ticket_purchasing()
+
+        # Admin Dashboard Tab
+        self.admin_frame = ttk.Frame(tab_control)
+        tab_control.add(self.admin_frame, text="Admin Dashboard")
+        self.setup_admin_dashboard()
+
+        tab_control.pack(expand=1, fill="both")
+
+    def setup_account_management(self):
+        tk.Label(self.account_frame, text="Login Page", font=("Arial", 16)).pack(pady=10)
+
+        # Login Form
+        tk.Label(self.account_frame, text="Username").pack(pady=5)
+        self.username_entry = tk.Entry(self.account_frame)
+        self.username_entry.pack(pady=5)
+
+        tk.Label(self.account_frame, text="Password").pack(pady=5)
+        self.password_entry = tk.Entry(self.account_frame, show="*")
+        self.password_entry.pack(pady=5)
+
+        tk.Button(self.account_frame, text="Login", command=self.login_account).pack(pady=10)
+
+        # Placeholder for account actions
+        self.account_actions_frame = tk.Frame(self.account_frame)
+        self.account_actions_frame.pack(pady=20)
+
+    def login_account(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        # Automatically create the account if it doesn't exist
+        if username not in self.accounts:
+            self.accounts[username] = {
+                "password": password,
+                "email": f"{username}@example.com",
+                "phone": "+0000000000",  # Default phone number
+            }
+            self.purchase_orders[username] = []  # Initialize empty purchase orders
+
+        if username in self.accounts and self.accounts[username]["password"] == password:
+            messagebox.showinfo("Login", "Login successful!")
+            self.display_account_actions(username)
+        else:
+            messagebox.showerror("Login", "Invalid username or password!")
+
+    def display_account_actions(self, username):
+        # Clear previous actions
+        for widget in self.account_actions_frame.winfo_children():
+            widget.destroy()
+
+        tk.Label(self.account_actions_frame, text=f"Welcome, {username}", font=("Arial", 14)).pack(pady=10)
+
+        # Display Customer Details
+        details = self.accounts[username]
+        details_text = f"Email: {details['email']}\nPhone: {details['phone']}"
+        tk.Label(self.account_actions_frame, text=details_text).pack(pady=10)
+
+        # Purchase Order Management
+        tk.Button(self.account_actions_frame, text="View Purchase Orders", command=lambda: self.view_purchase_orders(username)).pack(pady=5)
+        tk.Button(self.account_actions_frame, text="Modify Purchase Orders", command=lambda: self.modify_purchase_orders(username)).pack(pady=5)
+        tk.Button(self.account_actions_frame, text="Delete Purchase Orders", command=lambda: self.delete_purchase_orders(username)).pack(pady=5)
+
+    def view_purchase_orders(self, username):
+        view_window = tk.Toplevel(self.root)
+        view_window.title("View Purchase Orders")
+        view_window.geometry("400x300")
+
+        orders = self.purchase_orders[username]
+        if not orders:
+            tk.Label(view_window, text="No purchase orders found.", font=("Arial", 12)).pack(pady=10)
+        else:
+            for order in orders:
+                tk.Label(view_window, text=f"Order ID: {order['id']} - Ticket: {order['ticket']} - Quantity: {order['quantity']}", font=("Arial", 10)).pack(pady=5)
+
+    def modify_purchase_orders(self, username):
+        modify_window = tk.Toplevel(self.root)
+        modify_window.title("Modify Purchase Orders")
+        modify_window.geometry("400x300")
+
+        orders = self.purchase_orders[username]
+        if not orders:
+            tk.Label(modify_window, text="No purchase orders to modify.", font=("Arial", 12)).pack(pady=10)
+        else:
+            tk.Label(modify_window, text="Select an Order to Modify:", font=("Arial", 12)).pack(pady=10)
+            order_ids = [order['id'] for order in orders]
+            selected_order = tk.StringVar(value=order_ids[0])
+
+            # Dropdown for selecting an order
+            order_menu = ttk.Combobox(modify_window, textvariable=selected_order, values=order_ids)
+            order_menu.pack(pady=10)
+
+            # Fields to modify
+            tk.Label(modify_window, text="New Ticket Type").pack(pady=5)
+            new_ticket_entry = tk.Entry(modify_window)
+            new_ticket_entry.pack(pady=5)
+
+            tk.Label(modify_window, text="New Quantity").pack(pady=5)
+            new_quantity_entry = tk.Entry(modify_window)
+            new_quantity_entry.pack(pady=5)
+
+            tk.Button(modify_window, text="Save Changes", command=lambda: self.save_order_changes(username, selected_order.get(), new_ticket_entry.get(), new_quantity_entry.get(), modify_window)).pack(pady=10)
+
+    def save_order_changes(self, username, order_id, new_ticket, new_quantity, modify_window):
+        for order in self.purchase_orders[username]:
+            if order['id'] == order_id:
+                order['ticket'] = new_ticket
+                order['quantity'] = new_quantity
+                messagebox.showinfo("Modify Order", "Order details updated successfully!")
+                break
+        modify_window.destroy()
+
+    def delete_purchase_orders(self, username):
+        delete_window = tk.Toplevel(self.root)
+        delete_window.title("Delete Purchase Orders")
+        delete_window.geometry("400x300")
+
+        orders = self.purchase_orders[username]
+        if not orders:
+            tk.Label(delete_window, text="No purchase orders to delete.", font=("Arial", 12)).pack(pady=10)
+        else:
+            tk.Label(delete_window, text="Select an Order to Delete:", font=("Arial", 12)).pack(pady=10)
+            order_ids = [order['id'] for order in orders]
+            selected_order = tk.StringVar(value=order_ids[0])
+
+            # Dropdown for selecting an order
+            order_menu = ttk.Combobox(delete_window, textvariable=selected_order, values=order_ids)
+            order_menu.pack(pady=10)
+
+            tk.Button(delete_window, text="Delete Order", command=lambda: self.remove_order(username, selected_order.get(), delete_window)).pack(pady=10)
+
+    def remove_order(self, username, order_id, delete_window):
+        self.purchase_orders[username] = [order for order in self.purchase_orders[username] if order['id'] != order_id]
+        messagebox.showinfo("Delete Order", "Order deleted successfully!")
+        delete_window.destroy()
+
+    # Ticket Purchasing Section
+    def setup_ticket_purchasing(self):
+        tk.Label(self.ticket_frame, text="Ticket Purchasing Interface", font=("Arial", 16)).pack(pady=10)
+
+        # Ticket Options
+        tickets = [
+            {"Type": "Single-Day Pass", "Price": "275 DHS", "Validity": "1 Day"},
+            {"Type": "Two-Day Pass", "Price": "480 DHS", "Validity": "2 Days"},
+            {"Type": "Annual Membership", "Price": "1840 DHS", "Validity": "1 Year"},
+            {"Type": "Child Ticket", "Price": "185 DHS", "Validity": "1 Day"},
+            {"Type": "Group Ticket", "Price": "220 DHS", "Validity": "1 Day"},
+        ]
+
+        ticket_table = ttk.Treeview(self.ticket_frame, columns=("Type", "Price", "Validity"), show="headings")
+        ticket_table.heading("Type", text="Type")
+        ticket_table.heading("Price", text="Price")
+        ticket_table.heading("Validity", text="Validity")
+        ticket_table.pack(pady=10)
+
+        for ticket in tickets:
+            ticket_table.insert("", tk.END, values=(ticket["Type"], ticket["Price"], ticket["Validity"]))
+
+        tk.Button(self.ticket_frame, text="Proceed to Payment", command=self.open_payment_interface).pack(pady=10)
+
+    def open_payment_interface(self):
+        payment_window = tk.Toplevel(self.root)
+        payment_window.title("Payment Interface")
+        payment_window.geometry("400x400")
+
+        tk.Label(payment_window, text="Select Payment Method", font=("Arial", 14)).pack(pady=10)
+
+        # Payment Options
+        payment_method = tk.StringVar(value="Credit Card")
+
+        tk.Radiobutton(payment_window, text="Credit Card", variable=payment_method, value="Credit Card").pack(pady=5)
+        tk.Radiobutton(payment_window, text="Debit Card", variable=payment_method, value="Debit Card").pack(pady=5)
+
+        tk.Label(payment_window, text="Card Number").pack(pady=5)
+        tk.Entry(payment_window, width=30).pack(pady=5)
+
+        tk.Label(payment_window, text="Cardholder Name").pack(pady=5)
+        tk.Entry(payment_window, width=30).pack(pady=5)
+
+        tk.Label(payment_window, text="Card CVV").pack(pady=5)
+        tk.Entry(payment_window, width=10, show="*").pack(pady=5)
+
+        tk.Button(payment_window, text="Pay Now", command=lambda: self.process_payment(payment_method.get())).pack(pady=20)
+
+    def process_payment(self, method):
+        messagebox.showinfo("Payment", f"Payment successful using {method}!")
+
+    # Admin Dashboard with Ticket Sales and Discount Modifications
+    def setup_admin_dashboard(self):
+        tk.Label(self.admin_frame, text="Admin Dashboard", font=("Arial", 16)).pack(pady=10)
+
+        # Display Ticket Sales
+        tk.Label(self.admin_frame, text="Ticket Sales (Number Sold per Day)").pack(pady=10)
+        sales_data = {
+            "2024-12-01": 150,
+            "2024-12-02": 200,
+            "2024-12-03": 175,
+        }
+
+        sales_table = ttk.Treeview(self.admin_frame, columns=("Date", "Tickets Sold"), show="headings")
+        sales_table.heading("Date", text="Date")
+        sales_table.heading("Tickets Sold", text="Tickets Sold")
+        sales_table.pack(pady=10)
+
+        for date, sold in sales_data.items():
+            sales_table.insert("", tk.END, values=(date, sold))
+
+        # Modify Discounts
+        tk.Button(self.admin_frame, text="Modify Discounts", command=self.modify_discounts).pack(pady=10)
+
+    def modify_discounts(self):
+        discount_window = tk.Toplevel(self.root)
+        discount_window.title("Modify Discounts")
+        discount_window.geometry("300x200")
+
+        tk.Label(discount_window, text="Set New Discount for Tickets").pack(pady=10)
+        tk.Entry(discount_window, width=20).pack(pady=5)  # Discount percentage input
+        tk.Button(discount_window, text="Update Discount", command=lambda: messagebox.showinfo("Discount", "Discount updated!")).pack(pady=10)
+
+
+# Main Execution
+if _name_ == "_main_":
+    root = tk.Tk()
+    app = ThemeParkGUI(root)
+    root.mainloop()
+
