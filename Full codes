@@ -1,0 +1,234 @@
+import pickle
+from datetime import datetime
+
+# Helper function to save data using Pickle
+def saveFile(data, filename):
+    with open(filename, 'wb') as file:
+        pickle.dump(data, file)
+
+# Helper function to load data using Pickle
+def loadFile(filename):
+    try:
+        with open(filename, 'rb') as file:
+            return pickle.load(file)
+
+    except FileNotFoundError:
+        return []
+
+class User:
+    def __init__(self, uName, uEmail, uPhoneNumber):
+        self.uName = uName
+        self.uEmail = uEmail
+        self.uPhoneNumber = uPhoneNumber
+        self.uMembershipStatus = False
+        self.uBookingHistory = []
+
+    def register(self):
+        print(f"{self.uName} has been registered successfully.")
+        return self
+
+    def login(self, email):
+        if email == self.uEmail:
+            print(f"{self.uName} has logged in.")
+            return True
+
+        raise ValueError("Invalid email address provided!")
+
+class Account:
+    def __init__(self, aAccountId,  aUsername, aPassword):
+        self.aAccountId = aAccountId
+        self.aUsername = aUsername
+        self.aPassword = aPassword
+        self.aBalance = 0.0
+        self.aCreatedAt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    def createAccount(self):
+        print(f"Account for {self.aUsername} has been created.")
+
+    def login(self, username, password):
+        if username == self.aUsername and password == self.aPassword:
+            print(f"{self.aUsername} has logged in.")
+            return True
+
+        raise ValueError("Invalid username or password provided!")
+
+    def checkBalance(self):
+        return self.aBalance
+
+class BookingSystem:
+    def __init__(self, bSystemId, bCapacity):
+        self.bSystemId = bSystemId
+        self.bAvailableTickets = []
+        self.bReservations = []
+        self.bCapacity = bCapacity
+        self.bSystemStatus = "No more tickets available!"
+
+    def addTicket(self, ticket):
+        self.bAvailableTickets.append(ticket)
+        saveFile(self.bAvailableTickets, 'tickets.pkl')
+        print(f"Ticket #{ticket.tId} booked.")
+
+    def makeReservation(self, user, ticket_id):
+        if len(self.bReservations) >= self.bCapacity:
+            return self.bSystemStatus
+
+        ticket = None
+
+        # Keep iterating through all available tickets until a match is found
+        for t in self.bAvailableTickets:
+            if t.tId == ticket_id:
+                ticket = t
+                break
+
+        if not ticket:
+            raise Exception("Ticket not found!")
+
+        reservation = {"user": user.uName, "ticket_id": ticket_id, "date": str(datetime.now())}
+        self.bReservations.append(reservation)
+        saveFile(self.bReservations, 'reservations.pkl')
+        return f"Reservation made for {user.uName}."
+
+    def checkAvailability(self):
+        if len(self.bReservations) < self.bCapacity:
+            self.bSystemStatus = "Available"
+            return True
+
+        return False
+
+class Tickets:
+    def __init__(self, tId, tType, tPrice, tValidityDate, tEventName):
+        self.tId = tId
+        self.tType = tType
+        self.tPrice = tPrice
+        self.tValidityDate = tValidityDate
+        self.tEventName = tEventName
+
+    def updatePrice(self, new_price):
+        self.tPrice = new_price
+        print(f"Ticket #{self.tId} price is now {self.tPrice:.2f}.")
+
+    def isValid(self):
+        return datetime.now() <= self.tValidityDate
+
+    def applyDiscount(self, discount_rate):
+        new_price = self.tPrice -  self.tPrice * discount_rate
+        print(f"Discount applied! New price: {new_price:.2f}")
+        return new_price
+
+class Reservation:
+    def __init__(self, rId, rUserId, rTicketId, rDate):
+        self.rId = rId
+        self.rUserId = rUserId
+        self.rTicketId = rTicketId
+        self.rDate = rDate
+        self.rStatus = "Pending"
+
+    def confirmReservation(self):
+        self.rStatus = "Confirmed"
+        print(f"Reservation #{self.rId} has been confirmed.")
+
+    def cancelReservation(self):
+        self.rStatus = "Cancelled"
+        print(f"Reservation #{self.rId} has been cancelled.")
+        return True
+
+    def updateReservation(self, new_date):
+        self.rDate = new_date
+        print(f"Reservation #{self.rId} date is now {self.rDate}.")
+
+    def isActive(self):
+        return self.rStatus == "Confirmed"
+
+class Membership:
+    def __init__(self, mId, mType, mDiscountRate, mValidityPeriod, mUserId):
+        self.mId = mId
+        self.mType = mType
+        self.mDiscountRate = mDiscountRate
+        self.mValidityPeriod = mValidityPeriod
+        self.mUserId = mUserId
+        self.mStatus = "Pending"
+
+    def activateMembership(self):
+        self.mStatus = "Active"
+        print(f"Membership #{self.mId} has been activated.")
+
+    def renewMembership(self):
+        print(f"Membership #{self.mId} has been renewed for {self.mValidityPeriod} days.")
+
+    def applyDiscount(self, ticket):
+        ticket.applyDiscount(self.mDiscountRate)
+
+    def cancelMembership(self):
+        self.mStatus = "Cancelled"
+        print(f"Membership #{self.mId} has been cancelled.")
+
+class Payment:
+    def __init__(self, pId, pAmount, pMethod):
+        self.pId = pId
+        self.pAmount = pAmount
+        self.pMethod = pMethod
+        self.pDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.pStatus = "Pending"
+
+    def processPayment(self):
+        self.pStatus = "Completed"
+        print(f"Payment #{self.pId} of amount {self.pAmount:.2f} has been processed.")
+        return True
+
+    def refundPayment(self):
+        self.pStatus = "Refunded"
+        print(f"Payment #{self.pId} of amount {self.pAmount:.2f} has been refunded.")
+        return True
+
+    def getPaymentDetails(self):
+        return {
+            "Payment ID": self.pId,
+            "Amount": self.pAmount,
+            "Method": self.pMethod,
+            "Date": self.pDate,
+            "Status": self.pStatus
+        }
+
+class AdminDashboard:
+    def __init__(self, booking_system):
+        self.booking_system = booking_system
+
+    def displaySummary(self):
+        print("Admin Dashboard Summary:")
+        print(f"Total Reservations: {len(self.booking_system.bReservations)}")
+        print(f"Total Tickets Available: {len(self.booking_system.bAvailableTickets)}")
+        print(f"System Capacity: {self.booking_system.bCapacity}")
+
+def testCases():
+    user = User("John Doe", "john.doe@example.com", "+1 437 669-0171")
+    user.register()
+    user.login("john.doe@example.com")
+
+    account = Account("A1", "johndoe", "password123")
+    account.createAccount()
+    account.login(account.aUsername, account.aPassword)
+    print("Account balance:", account.checkBalance())
+
+    system = BookingSystem("B1", 10)
+    ticket = Tickets("T1", "Standard", 50.0, datetime(2024, 12, 31), "Concert")
+    print("Is ticket valid?", ticket.isValid())
+    ticket.applyDiscount(0.2)
+    system.addTicket(ticket)
+    system.makeReservation(user, ticket.tId)
+
+    admin = AdminDashboard(system)
+    admin.displaySummary()
+
+    reservation = Reservation("R1", user.uName, ticket.tId, datetime.now())
+    reservation.confirmReservation()
+
+    membership = Membership("M1", "Gold", 0.1, 365, user.uName)
+    membership.activateMembership()
+    membership.applyDiscount(ticket)
+
+    payment = Payment("P1", 45.0, "Credit Card")
+    payment.processPayment()
+    print("Payment details:", payment.getPaymentDetails())
+
+if __name__ == "__main__":
+    testCases()
