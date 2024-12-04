@@ -1,1 +1,68 @@
+for the diagram:
+
+class Tickets:
+    """Class representing Tickets"""
+    def __init__(self, ticket_id, ticket_type, price, validity_date, event_name):
+        self._tId = ticket_id
+        self._tType = ticket_type
+        self._tPrice = price
+        self._tValidityDate = validity_date
+        self._tEventName = event_name
+
+    def set_ticket_id(self, ticket_id):
+        self._tId = ticket_id
+
+    def get_ticket_id(self):
+        return self._tId
+
+    def set_type(self, ticket_type):
+        self._tType = ticket_type
+
+    def get_type(self):
+        return self._tType
+
+    def set_price(self, price):
+        self._tPrice = price
+
+    def get_price(self):
+        return self._tPrice
+
+    def set_validity_date(self, validity_date):
+        self._tValidityDate = validity_date
+
+    def get_validity_date(self):
+        return self._tValidityDate
+
+    def set_event_name(self, event_name):
+        self._tEventName = event_name
+
+    def get_event_name(self):
+        return self._tEventName
+
+    def get_details(self):
+        return f"Ticket ID: {self._tId}, Event: {self._tEventName}, Price: {self._tPrice}"
+
+
+for the pickle:
+
+class Tickets:
+    def __init__(self, tId, tType, tPrice, tValidityDate, tEventName):
+        self.tId = tId
+        self.tType = tType
+        self.tPrice = tPrice
+        self.tValidityDate = tValidityDate
+        self.tEventName = tEventName
+
+    def updatePrice(self, new_price):
+        self.tPrice = new_price
+        print(f"Ticket #{self.tId} price is now {self.tPrice:.2f}.")
+
+    def isValid(self):
+        return datetime.now() <= self.tValidityDate
+
+    def applyDiscount(self, discount_rate):
+        new_price = self.tPrice -  self.tPrice * discount_rate
+        print(f"Discount applied! New price: {new_price:.2f}")
+        return new_price
+
 
