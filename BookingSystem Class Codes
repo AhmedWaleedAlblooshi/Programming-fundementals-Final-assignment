@@ -1,1 +1,88 @@
+for the diagram:
+
+class BookingSystem:
+    """Class representing a Booking System"""
+    def __init__(self, system_id, available_tickets, reservations, capacity, status):
+        self._bSystemId = system_id
+        self._bAvailableTickets = available_tickets
+        self._bReservations = reservations
+        self._bCapacity = capacity
+        self._bSystemStatus = status
+
+    def set_system_id(self, system_id):
+        self._bSystemId = system_id
+
+    def get_system_id(self):
+        return self._bSystemId
+
+    def set_available_tickets(self, tickets):
+        self._bAvailableTickets = tickets
+
+    def get_available_tickets(self):
+        return self._bAvailableTickets
+
+    def set_reservations(self, reservations):
+        self._bReservations = reservations
+
+    def get_reservations(self):
+        return self._bReservations
+
+    def set_capacity(self, capacity):
+        self._bCapacity = capacity
+
+    def get_capacity(self):
+        return self._bCapacity
+
+    def set_system_status(self, status):
+        self._bSystemStatus = status
+
+    def get_system_status(self):
+        return self._bSystemStatus
+
+    def get_details(self):
+        return f"System ID: {self._bSystemId}, Status: {self._bSystemStatus}, Capacity: {self._bCapacity}"
+
+
+
+for the pickle:
+
+class BookingSystem:
+    def __init__(self, bSystemId, bCapacity):
+        self.bSystemId = bSystemId
+        self.bAvailableTickets = []
+        self.bReservations = []
+        self.bCapacity = bCapacity
+        self.bSystemStatus = "No more tickets available!"
+
+    def addTicket(self, ticket):
+        self.bAvailableTickets.append(ticket)
+        saveFile(self.bAvailableTickets, 'tickets.pkl')
+        print(f"Ticket #{ticket.tId} booked.")
+
+    def makeReservation(self, user, ticket_id):
+        if len(self.bReservations) >= self.bCapacity:
+            return self.bSystemStatus
+
+        ticket = None
+
+        # Keep iterating through all available tickets until a match is found
+        for t in self.bAvailableTickets:
+            if t.tId == ticket_id:
+                ticket = t
+                break
+
+        if not ticket:
+            raise Exception("Ticket not found!")
+
+        reservation = {"user": user.uName, "ticket_id": ticket_id, "date": str(datetime.now())}
+        self.bReservations.append(reservation)
+        saveFile(self.bReservations, 'reservations.pkl')
+        return f"Reservation made for {user.uName}."
+
+    def checkAvailability(self):
+        if len(self.bReservations) < self.bCapacity:
+            self.bSystemStatus = "Available"
+            return True
+
+        return False
 
